@@ -30,7 +30,7 @@ CREATE TABLE `anggota` (
   `email` varchar(100) DEFAULT NULL,
   `no_hp` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id_anggota`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -39,6 +39,7 @@ CREATE TABLE `anggota` (
 
 LOCK TABLES `anggota` WRITE;
 /*!40000 ALTER TABLE `anggota` DISABLE KEYS */;
+INSERT INTO `anggota` VALUES (1,'Eri Juandi','1990-07-12','Bandung','joean.ardian@gmail.com','08132022221'),(2,'Joni Aridan',NULL,'Cimahi','joni@gmail.com','08900001');
 /*!40000 ALTER TABLE `anggota` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -55,7 +56,7 @@ CREATE TABLE `buku` (
   `pengarang` varchar(100) DEFAULT NULL,
   `stok` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id_buku`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -64,6 +65,7 @@ CREATE TABLE `buku` (
 
 LOCK TABLES `buku` WRITE;
 /*!40000 ALTER TABLE `buku` DISABLE KEYS */;
+INSERT INTO `buku` VALUES (1,'Bandung lautan api','joeanardian','10'),(2,'Bangun pemuda pemudi','ery','10'),(3,'Bergerak bersama si kribo','tuti','10'),(4,'Bohong tidak boleh','tati','10'),(5,'Sssst Jangan berisik','wahyu','9');
 /*!40000 ALTER TABLE `buku` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -83,7 +85,7 @@ CREATE TABLE `log_buku` (
   PRIMARY KEY (`log_id`),
   KEY `log_buku_FK` (`id_buku`),
   CONSTRAINT `log_buku_FK` FOREIGN KEY (`id_buku`) REFERENCES `buku` (`id_buku`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -92,6 +94,7 @@ CREATE TABLE `log_buku` (
 
 LOCK TABLES `log_buku` WRITE;
 /*!40000 ALTER TABLE `log_buku` DISABLE KEYS */;
+INSERT INTO `log_buku` VALUES (1,3,'2023-11-02 17:00:00',9,'stok berkurang'),(2,5,'2023-11-02 17:00:00',9,'stok berkurang'),(3,5,'2023-11-02 17:00:00',9,'stok berkurang'),(4,5,'2023-11-02 17:00:00',8,'stok berkurang'),(5,5,'2023-11-02 17:00:00',9,'stok berkurang');
 /*!40000 ALTER TABLE `log_buku` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -115,7 +118,7 @@ CREATE TABLE `peminjaman` (
   KEY `peminjaman_FK_1` (`id_buku`),
   CONSTRAINT `peminjaman_FK` FOREIGN KEY (`id_anggota`) REFERENCES `anggota` (`id_anggota`),
   CONSTRAINT `peminjaman_FK_1` FOREIGN KEY (`id_buku`) REFERENCES `buku` (`id_buku`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -124,8 +127,69 @@ CREATE TABLE `peminjaman` (
 
 LOCK TABLES `peminjaman` WRITE;
 /*!40000 ALTER TABLE `peminjaman` DISABLE KEYS */;
+INSERT INTO `peminjaman` VALUES (1,1,3,'2023-11-03','2023-11-06','2023-11-09','pinjam jangan dikembalikan'),(2,2,2,'2023-11-03','2023-11-06','2023-11-09','pinjam jangan dikembalikan'),(3,2,1,'2023-11-03','2023-11-06','2023-11-09','pinjam jangan dikembalikan'),(4,1,1,'2023-11-03','2023-11-06','2023-11-09','pinjam jangan dikembalikan'),(5,1,5,'2023-11-03','2023-11-06','2023-11-09','pinjam jangan dikembalikan'),(6,1,2,'2023-11-03','2023-11-06','2023-11-09','pinjam jangan dikembalikan'),(7,1,4,'2023-11-03','2023-11-06','2023-11-09','pinjam jangan dikembalikan'),(8,2,1,'2023-11-03','2023-11-06','2023-11-09','pinjam jangan dikembalikan'),(9,2,4,'2023-11-03','2023-11-06','2023-11-09','pinjam jangan dikembalikan'),(10,2,5,'2023-11-03','2023-11-06','2023-11-09','pinjam jangan dikembalikan'),(12,1,3,'2023-11-03','2023-11-06',NULL,'pinjam jangan dikembalikan'),(13,1,5,'2023-11-03','2023-11-06',NULL,'pinjam jangan dikembalikan'),(14,1,5,'2023-11-03','2023-11-06',NULL,'pinjam jangan dikembalikan'),(15,1,5,'2023-11-03','2023-11-06','2023-11-03','pinjam jangan dikembalikan');
 /*!40000 ALTER TABLE `peminjaman` ENABLE KEYS */;
 UNLOCK TABLES;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `on_insert` AFTER INSERT ON `peminjaman` FOR EACH ROW begin 
+	declare book_id INT;
+	declare borrowed_qty INT;
+	declare current_stock INT;
+
+	set book_id = new.id_buku;
+	
+	select stok into current_stock from buku where id_buku = book_id;
+	
+	set current_stock = current_stock - 1;
+
+	insert into log_buku (id_buku, tgl_log,perubahan_stok, keterangan) values 
+	(book_id, CURRENT_DATE(),current_stock, "stok berkurang");
+
+	update buku set stok = current_stock where id_buku = book_id;
+end */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `on_update` AFTER UPDATE ON `peminjaman` FOR EACH ROW begin 
+	declare book_id INT;
+	declare borrowed_qty INT;
+	declare current_stock INT;
+
+	set book_id = new.id_buku;
+	
+	select stok into current_stock from buku where id_buku = book_id;
+	
+	set current_stock = current_stock + 1;
+
+	insert into log_buku (id_buku, tgl_log,perubahan_stok, keterangan) values 
+	(book_id, CURRENT_DATE(),current_stock, "stok bertambah");
+
+	update buku set stok = current_stock where id_buku = book_id;
+end */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 
 --
 -- Dumping routines for database 'elibrary'
@@ -140,4 +204,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-11-03  9:08:55
+-- Dump completed on 2023-11-03 10:20:48
